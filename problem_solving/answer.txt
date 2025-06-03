@@ -1,0 +1,17 @@
+# Usulan Ide AI/ML
+Pada dasarnya, 1 model biasanya berlaku untuk 1 kasus karena sebuah model ditraining dan ditest menggunakan dataset tertentu.
+Sehingga, ketika ada beberapa kasus, maka hal yang memungkinkan adalah menggunakan model yang berbeda-beda. Berikut beberapa kasus dan juga model yang saya usulkan.
+- Manipulasi nota / klaim palsu = Autoencoder karena untuk deteksi anomali dari klaim yang menjadi input. Hal ini dikarenakan algoritma encoder hanya dilatih menggunakan data yang benar (tidak fraud) sehingga ketika ada anomali yang masuk akan terlihat dari eror konstruksinya.
+- Fraud CC = Isolation Forest karena data fraud akan mudah terisolasi (membelah lebih sedikit) sehingga mudah terdeteksi fraudnya. Model dengan algoritma ini tidak memerlukan label sehingga cepat dalam pengembangannya.
+
+# Data yang diperlukan
+- Manipulasi nota / klaim palsu = data transaksi yang dipastikan tidak fraud (jumlah nominal klaim, kategori pengeluaran, informasi vendor)
+- Fraud CC = data transaksi (nominal, tipe transaksi, merchant)
+
+# Cara penerapan
+- Saya memiliki ide untuk mengimplementasi kedua model tersebut ke dalam 1 sistem. Jadi, akan terdapat 2 input untuk memilih apakah mau deteksi fraud manipulasi nota atau CC. Lalu, input tersebut akan mengarah ke model mana yang akan digunakan dan akhirnya outputnya berupa hasil prediksi apakah fraud atau tidak fraud. Model bisa dideploy secara microservice atau bisa hanya dengan .pkl yang terpisah.
+
+# Infrastruktur yang diperlukan
+- Server dengan storage cukup untuk model dan data
+- API/Service untuk menerima input dan mengirim output prediksi
+
